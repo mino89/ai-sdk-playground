@@ -1,0 +1,6 @@
+# Package manager
+node_modules
+
+# Security
+.env
+.devtools
