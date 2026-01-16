@@ -4,3 +4,8 @@ node_modules
 # Security
 .env
 .devtools
+
+# DB
+local.db
+knowledge/**/*
+!knowledge/**/.gitkeep

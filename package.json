@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "tsx --env-file=.env src/main.ts",
     "watch": "nodemon",
-    "devtools": "pnpx @ai-sdk/devtools"
+    "devtools": "pnpx @ai-sdk/devtools",
+    "seed": "tsx src/utils/seed.ts"
   },
   "keywords": [],
   "author": "",
@@ -14,14 +15,17 @@
   "packageManager": "pnpm@10.28.0",
   "dependencies": {
     "@ai-sdk/devtools": "^0.0.5",
+    "@libsql/client": "^0.17.0",
     "@types/node": "^25.0.8",
     "ai": "^6.0.34",
     "dotenv": "^17.2.3",
+    "pdf-parse": "^2.4.5",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "zod": "^4.3.5"
   },
   "devDependencies": {
+    "@types/pdf-parse": "^1.1.5",
     "nodemon": "^3.1.11"
   }
 }
