@@ -7,7 +7,7 @@
     "dev": "tsx --env-file=.env src/main.ts",
     "watch": "nodemon",
     "devtools": "pnpx @ai-sdk/devtools",
-    "seed": "tsx src/utils/seed.ts"
+    "seed": "tsx src/db/seed.ts"
   },
   "keywords": [],
   "author": "",

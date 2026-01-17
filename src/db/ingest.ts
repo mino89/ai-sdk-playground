@@ -3,7 +3,8 @@ import { readFile } from "node:fs/promises";
 import { PDFParse } from "pdf-parse";
 import { embedMany } from "ai";
 import { client } from "./db";
-import { CONFIG } from "./config";
+import { CONFIG } from "../config";
+import { QUERIES } from "./queries";
 
 export async function ingestPdf(filePath: string) {
   const dataBuffer = await readFile(filePath);
@@ -15,7 +16,7 @@ export async function ingestPdf(filePath: string) {
   if (chunks.length === 0) return;
 
   // Generate vectors in batches to avoid token limits
-  const BATCH_SIZE = 5; // Process 5 chunks at a time
+  const BATCH_SIZE = 10; // Process 5 chunks at a time
   const allEmbeddings = [];
 
   for (let i = 0; i < chunks.length; i += BATCH_SIZE) {
@@ -35,7 +36,7 @@ export async function ingestPdf(filePath: string) {
   // insert in local db
   for (let i = 0; i < chunks.length; i++) {
     await client.execute({
-      sql: "INSERT INTO documents (content, embedding) VALUES (?, vector(?))",
+      sql: QUERIES.insertDocument,
       args: [chunks[i], JSON.stringify(allEmbeddings[i])],
     });
   }

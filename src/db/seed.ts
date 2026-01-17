@@ -1,9 +1,9 @@
-import fs from "fs";
-import path from "path";
-import { setupDb } from "../db";
-import { ingestPdf } from "../ingest";
+import fs from "node:fs";
+import path from "node:path";
+import { setupDb } from "./db";
+import { ingestPdf } from "./ingest";
 
-const DOCS_DIR = "./knowledge";
+const DOCS_DIR = process.env.KNOWLEDGE_TABLE || "./knowledge";
 async function main() {
   console.log("🚀 Start indexing");
   await setupDb();
